@@ -1,15 +1,22 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container">
+    <cont />
+    <resultpane />
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
-export default {
+import cont from './components/cont.vue'
+import resultpane from './components/resultpane.vue'
+
+export default 
+{
   name: 'App',
-  components: {
-    HelloWorld
+  components: 
+  {
+    cont,
+    resultpane
   }
 }
 </script>
@@ -21,6 +28,12 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 10px;
+  height: 100%;
+}
+html,body
+{
+  height: 100%;
+  width: 100%;
 }
 </style>
