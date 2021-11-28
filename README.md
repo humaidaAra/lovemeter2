@@ -1,3 +1,5 @@
+THIS PROJECT (LOVEMETER) CREATED AND REQUIRES VUE-JS V3.0
+
 # lovemeter2
 
 ## Project setup
