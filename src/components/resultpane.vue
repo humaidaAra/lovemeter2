@@ -24,26 +24,11 @@ export default
   },
   created()
     {
-      // this.showus();
-
         this.emitter.on("getResult", data => {
           this.percentage = data;
           this.measure  = ""+this.percentage+"%";
         });
-    },
-  
-  methods:
-  {
-    // showus()
-    // {
-    //   let b = this.percentage;
-    //   for(let i=0; i<b; i++)
-    //   {
-    //     console.log(i);
-    //   }
-    //     // document.getElementById('cilinder').style.animation = 'fading 2s infinite'
-    //}
-  }
+    }
 }
 </script>
 

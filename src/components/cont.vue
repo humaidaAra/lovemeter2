@@ -20,8 +20,7 @@ export default
   data(){
     return{
       inp1:'',
-      inp2:'',
-      percentt:0
+      inp2:''
     }
   },
   methods:
@@ -31,17 +30,7 @@ export default
       var x = Math.floor(Math.random()*(100)+1); //between 0 and 100
       return x;
     },
-    showus()
-    {
-      let b = this.generateRand();
-      for(let i=0; i<b; i++)
-      {
-        console.log(i);
-      }
-        // send value to resultpane without rendering it twice
-        // document.getElementById('cilinder').style.animation = 'fading 2s infinite'
-
-    },
+    
       check(e)
       {
         e.preventDefault();
