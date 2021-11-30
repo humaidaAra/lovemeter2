@@ -5,6 +5,7 @@
      <div class="cilinder" :style="{width:measure}">
 
      </div>
+      <img class="caughtGhey" src="../assets/ghey.jpg" v-show="isGhey" alt="" />
   </div>
 </template>
 
@@ -18,6 +19,7 @@ export default
   },
     data(){
       return{
+        isGhey: false,
         percentage: null,
         measure: "0%"
       }
@@ -25,8 +27,20 @@ export default
   created()
     {
         this.emitter.on("getResult", data => {
-          this.percentage = data;
-          this.measure  = ""+this.percentage+"%";
+          
+            this.percentage = data;
+            this.measure  = ""+this.percentage+"%";
+         
+        });
+        this.emitter.on("caughtGhey", data =>{
+          if(data == "male" || data == "fMale")
+          {
+            this.isGhey = true;
+          }
+          else
+          {
+            this.isGhey = false;
+          }
         });
     }
 }

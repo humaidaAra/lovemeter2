@@ -7,59 +7,140 @@
           <input v-model="inp1" class="inp1" type="text" />
           <label id="lbl2" for="inp2" >Enter person 2 name: </label>
           <input v-model="inp2" class="inp2" ref="inp2" type="text">
-          <button class="btn" @click="check">Test!</button>
+          <button class="btn btn-primary" @click="check">Test!</button>
+
+          <label class="male1lbl" for="male1">Male</label>
+          <input v-model="gen1" class="male1" type="radio" @change="checkGhey" name="gend1" value="male" />
+
+          <label class="fmale1lbl" for="female1">fMale</label>
+          <input v-model="gen1" class="female1" type="radio" @change="checkGhey" name="gend1" value="fMale" />
+
+
+          <label class="male2lbl" for="male2">Male</label>
+          <input v-model="gen2" class="male2" type="radio" @change="checkGhey" name="gend2" value="male" />
+
+          <label class="fmale2lbl" for="female2">fMale</label>
+          <input v-model="gen2" class="female2" type="radio" @change="checkGhey" name="gend2" value="fMale"/>
+
       </div>
     </form>
+    <img class="caughtGhey" src="../assets/ghey.jpg" v-show="isGhey" alt="" />
   </div>
 </template>
-
 <script>
+import Swal from 'sweetalert2'
 export default 
 {
   
   data(){
     return{
       inp1:'',
-      inp2:''
+      inp2:'',
+      gen1: '',
+      gen2: '',
+      isGhey: false
     }
   },
   methods:
   {
+    checkGhey()
+    {
+        if(!(this.gen1 == "" || this.gen2 == ""))
+        {
+          if(this.gen1 == this.gen2)
+          {
+            // this.emitter.emit("caughtGhey", this.gen1)
+            // $(document).('caughtGhey').magnificPopup({type: 'image'});
+
+            Swal.fire(
+            {
+              title: "GHEY",
+              
+              imageWidth: 400,
+              imageHeight: 200,
+            });
+          }
+
+        }
+    },
     generateRand()
     {
       var x = Math.floor(Math.random()*(100)+1); //between 0 and 100
       return x;
     },
+    check(e)
+    {
+      e.preventDefault();
     
-      check(e)
+      if(this.inp1.toLowerCase() == "" || this.inp2.toLowerCase() == "")
       {
-        e.preventDefault();
-      
-        if(this.inp1.toLowerCase() == "" || this.inp2.toLowerCase() == "")
-        {
-          alert("you have nothin ma man");
-          
-          return;
-        }
-        else if(this.inp1.toLowerCase() == this.inp2.toLowerCase())
-        {
-           alert("mn xomm zor xoshawe, 3ashqi xomm, emmmm owww")
-           this.inp1="";
-           this.inp2="";
-           return;
-        }
-        else
-        {
-          this.emitter.emit("getResult", this.generateRand());
-          //  this.inp1="";
-          //  this.inp2="";
-        }
+        alert("you have nothin ma man");
+        
+        return;
       }
+      else if(this.inp1.toLowerCase() == this.inp2.toLowerCase())
+      {
+          alert("mn xomm zor xoshawe, 3ashqi xomm, emmmm owww")
+          this.inp1="";
+          this.inp2="";
+          return;
+      }
+      else
+      {
+        this.emitter.emit("getResult", this.generateRand());
+      }
+    }
   }
 }
 </script>
 
 <style scoped>
+  .male1, .male1lbl, .male2, .male2lbl, .female1, .fmale1lbl, .female2, .fmale2lbl
+  {
+    position: absolute;
+    width: 20px;
+  }
+  .male1
+  {
+    top: 86%;
+    left: 15%;
+  }
+  .male1lbl
+  {
+    top: 90%;
+    left: 17%
+  }
+  .female1
+  {
+    top: 86%;
+    left: 25%
+  }
+  .fmale1lbl
+  {
+    top: 90%;
+    left: 27%;
+  }
+  .male2
+  {
+    top: 86%;
+    left: 53%;
+  }
+  .male2lbl
+  {
+    top: 90%;
+    left: 55%;
+  }
+  .female2
+  {
+    top: 86%;
+    left: 63%;
+  }
+  .fmale2lbl
+  {
+    top: 90%;
+    left: 65%;
+  }
+
     .btn
     {
       width: 100px;
@@ -98,7 +179,7 @@ export default
     .container
     {
         width:100%;
-        height: 30vh;
+        height: 50vh;
         /* background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(43,43,43,1) 100%); */
         border: solid 2px black;
         border-radius: 10px;
