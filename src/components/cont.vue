@@ -7,7 +7,7 @@
           <input v-model="inp1" class="inp1" type="text" />
           <label id="lbl2" for="inp2" >Enter person 2 name: </label>
           <input v-model="inp2" class="inp2" ref="inp2" type="text">
-          <button class="btn btn-primary" @click="check">Test!</button>
+          <button :disabled='disabl' class="btn btn-primary" @click="check">Test!</button>
 
           <label class="male1lbl" for="male1">Male</label>
           <input v-model="gen1" class="male1" type="radio" @change="checkGhey" name="gend1" value="male" />
@@ -38,29 +38,36 @@ export default
       inp2:'',
       gen1: '',
       gen2: '',
-      isGhey: false
+      isGhey: false,
+      disabl:  false
     }
   },
   methods:
   {
-    checkGhey()
+    checkGhey(e)
     {
+      e.preventDefault();
+
         if(!(this.gen1 == "" || this.gen2 == ""))
         {
           if(this.gen1 == this.gen2)
           {
-            // this.emitter.emit("caughtGhey", this.gen1)
-            // $(document).('caughtGhey').magnificPopup({type: 'image'});
-
+              const imagePath = require("@/assets/ghey.jpg");
             Swal.fire(
             {
               title: "GHEY",
-              
+              imageUrl: imagePath,
               imageWidth: 400,
               imageHeight: 200,
             });
+          this.disabl = true
+          return;
           }
-
+          this.disabl= false
+        }
+        else
+        {
+          this.disabl=false;
         }
     },
     generateRand()
@@ -74,13 +81,25 @@ export default
     
       if(this.inp1.toLowerCase() == "" || this.inp2.toLowerCase() == "")
       {
-        alert("you have nothin ma man");
+        Swal.fire(
+        {
+          title: 'empty',
+          text: 'enter both field please',
+          icon: 'error',
+          width: 400
+        })
         
         return;
       }
       else if(this.inp1.toLowerCase() == this.inp2.toLowerCase())
       {
-          alert("mn xomm zor xoshawe, 3ashqi xomm, emmmm owww")
+         Swal.fire(
+           {
+             title: "we got a radical self lover psycho here!",
+             text: "\"mn xomm zor xoshawe, 3ashqi xomm, emm oww\" ",
+             width: 400,
+           }
+         );
           this.inp1="";
           this.inp2="";
           return;
