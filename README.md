@@ -1,8 +1,12 @@
+:octocat: 💀 THIS PROJECT (LOVEMETER) CREATED AND REQUIRES VUE-JS V3.0 💀 :octocat:
+
 # lovemeter2
 
 ## Project setup
 ```
-npm install
+npm install -g @vue/cli
+
+npm update -g @vue/cli
 ```
 
 ### Compiles and hot-reloads for development
